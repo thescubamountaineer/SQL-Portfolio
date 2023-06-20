@@ -1,0 +1,25 @@
+CREATE TABLE bikes (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, price INTEGER, brand TEXT);
+
+INSERT INTO bikes VALUES (1, "shirt", 100, 10, "Trek");
+INSERT INTO bikes VALUES (2, "pump", 200, 10, "Specialized");
+INSERT INTO bikes VALUES (3, "wheel", 150, 8, "Trek");
+INSERT INTO bikes VALUES (4, "tube", 500, 10, "Giant");
+INSERT INTO bikes VALUES (5, "shorts", 300, 7, "Giant");
+INSERT INTO bikes VALUES (6, "glasses", 50, 10, "Oakley");
+INSERT INTO bikes VALUES (7, "helmets", 500, 10, "Giro");
+INSERT INTO bikes VALUES (8, "pedals", 400, 6, "Trek");
+INSERT INTO bikes VALUES (9,"sunscreen", 50, 9, "Banana Boat");
+INSERT INTO bikes VALUES (10, "frame", 30, 10,"Specialized");
+INSERT INTO bikes VALUES (11, "grips", 150, 8, "Giant");
+INSERT INTO bikes VALUES (12, "tape", 150, 7, "Trek");
+INSERT INTO bikes VALUES (13, "shoes", 50, 9, "Giant");
+INSERT INTO bikes VALUES (14, "pants", 30, 7, "Pearl Izumi");
+INSERT INTO bikes VALUES (15, "chain", 300, 9, "Park Tool");
+
+SELECT name, SUM(quantity) FROM bikes GROUP BY name;
+
+SELECT brand, SUM(quantity) FROM bikes GROUP BY brand;
+
+
+
+
