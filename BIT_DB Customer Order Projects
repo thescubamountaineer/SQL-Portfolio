@@ -1,0 +1,71 @@
+/Question 1 \ 
+SELECT COUNT(orderid)
+FROM BIT_DB.JanSales
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID'
+
+/Question 2\ 
+SELECT COUNT(orderid)
+FROM BIT_DB.JanSales
+WHERE Product = "iPhone"
+AND length(orderid) = 6 
+AND orderid <> 'Order ID'
+
+
+/Question 3\
+SELECT distinct acctnum
+FROM BIT_DB.customers cust
+INNER JOIN BIT_DB.FebSales Feb
+ON cust.order_id=FEB.orderid
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID'
+
+
+
+/Question 4\
+SELECT distinct product,price FROM BIT_DB.JanSales
+WHERE price in (SELECT min(price) FROM BIT_DB.JanSales)
+
+OR...
+
+SELECT distinct product, price 
+FROM BIT_DB.JanSales 
+ORDER BY price ASC LIMIT 1
+
+
+/Question 5\
+SELECT product, SUM(quantity)*price AS revenue
+FROM BIT_DB.JanSales
+GROUP BY product
+
+
+/Question 6\
+SELECT SUM(Quantity), product, SUM(quantity)*price as revenue
+FROM BIT_DB.FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY product
+
+
+/Question 7\
+SELECT count(acctnum), avg(quantity)*price, quantity
+FROM BIT_DB.customers cust
+LEFT JOIN BIT_DB.FebSales feb
+ON feb.orderID = cust.order_id
+WHERE quantity > 2
+GROUP BY acctnum
+
+select count(distinct cust.acctnum), avg(quantity*price)
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON FEB.orderid=cust.order_id
+WHERE Feb.Quantity>2
+AND length(orderid) = 6 
+AND orderid <> 'Order ID'
+
+select count(distinct cust.acctnum), avg(quantity*price)
+FROM BIT_DB.customers cust
+LEFT JOIN  BIT_DB.FebSales Feb
+ON FEB.orderid=cust.order_id
+WHERE Feb.Quantity>2
+AND length(orderid) = 6 
+AND orderid <> 'Order ID'
