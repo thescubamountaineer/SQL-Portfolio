@@ -19,3 +19,31 @@ What's the average danceability for the 10 most popular songs? (Work in progress
 SELECT danceability , popularity, artist_name FROM BIT_DB.Spotifydata
 ORDER BY popularity desc
 LIMIT 10
+
+
+
+EXAMPLE CTE QUERY 
+
+
+WITH tempTable AS (
+  SELECT
+  EmployeeID, Jobtitle
+  FROM employee_table
+  WHERE LastName IN ('Smith','Jurup','Washington')
+)
+
+SELECT Jobtitle from tempTable 
+
+
+WITH popularity_average_CTE AS (
+SELECT s.artist_name,
+AVG(s.popularity) AS average_popularity
+FROM SpotifyData s 
+GROUP BY s.artist_name
+)
+ 
+SELECT  artist_name,
+        average_popularity,
+        'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE average_popularity>=90;
